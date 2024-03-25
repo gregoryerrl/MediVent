@@ -1,0 +1,17 @@
+.login-container {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+/* Adjust the below styles to match the theme from your mockup */
+.btn-primary {
+    background-color: #004085;
+    border-color: #004085;
+}
+
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0,64,133,0.25);
+}

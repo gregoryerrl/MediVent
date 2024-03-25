@@ -1,0 +1,43 @@
+.search-bar-container {
+    position: relative;
+    margin: 20px 0;
+  }
+
+  .search-bar {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+  }
+
+  .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.2);
+    transition: transform .3s ease-in-out;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,.3);
+  }
+
+  .card-body {
+    padding: 10px;
+    text-align: center;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+
+  .card-text {
+    font-size: .9rem;
+  }
+
+  .btn-login {
+    float: right;
+    border-radius: 20px;
+  }

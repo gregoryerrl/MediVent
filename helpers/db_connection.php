@@ -2,8 +2,8 @@
 
   $server   = 'localhost';
   $username = 'root';
-  $password = 'password';
-  $db       = 'tricipay';
+  $password = '';
+  $db       = 'medivent';
   $conn     = new mysqli( $server, $username, $password, $db );
   
 
