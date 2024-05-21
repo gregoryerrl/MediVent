@@ -1,0 +1,50 @@
+body {
+  font-size: 2em;
+}
+
+.card {
+  margin-top: 20px;
+  border-radius: 15px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+  font-size: 3rem; /* Increase font size */
+  margin-bottom: 10px; /* Increase margin */
+}
+
+.card-text {
+  font-size: 1.7rem; /* Increase font size */
+}
+
+.card-body {
+  padding: 30px;
+}
+
+#quantity {
+  font-size: 1.5em;
+  width: 100px; /* Increase width */
+  text-align: center;
+}
+
+#proceed-gcash,
+#proceed-bill,
+#cancel {
+  margin-top: 20px;
+  padding: 15px 30px;
+}
+
+.btn {
+  font-size: 2em !important;
+  padding: 10px 20px;
+}
+
+.btn-qty {
+  width: 200px; /* Set wide width for quantity buttons */
+  font-size: 4em !important;
+}
+
+#quantity {
+  font-size: 4em !important;
+  width: 150px !important;
+}

@@ -14,21 +14,21 @@
 <body id="page">
 
     <div class="container d-flex justify-content-center flex-column">
-                <h1 id="title">MediVent</h1>
+        <h1 id="title">MediVent</h1>
         <div class="d-flex align-items-center justify-content-between px-5">
-                <!-- Purchase a Medicine button -->
-                <a href="pages/medicine_list/medicine_list.php" type="button" class="btn btn-success btn-custom">Purchase a Medicine</a>
-                <!-- Vending Machine Image -->
+            <!-- Purchase a Medicine button -->
+            <a href="pages/medicine_list/medicine_list.php" type="button" class="btn btn-success btn-custom">Purchase Medicine</a>
+            <!-- Vending Machine Image -->
             <img src="assets/images/vendingmachine.png" alt="Vending Machine" class="vending-machine img-fluid" />
-                <!-- Beneficiary Login button -->
-                <a href="pages/login/login.php" type="button" class="btn btn-primary btn-custom">Beneficiary Login</a>
+            <!-- Beneficiary Login button -->
+            <a href="pages/login/login.php" type="button" class="btn btn-primary btn-custom">Beneficiary Login</a>
         </div>
     </div>
 
-        <script src="plugins/jquery/jquery.min.js"></script>
-        <script src="plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="index.js"></script>
-        <script src="plugins/jsQR/dist/jsQR.js"></script>
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="index.js"></script>
+    <script src="plugins/jsQR/dist/jsQR.js"></script>
 </body>
 
 </html>

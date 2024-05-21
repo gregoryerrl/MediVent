@@ -12,18 +12,18 @@
 
 <body class="bg-light">
     <div class="container">
-        <div class="row vh-100 justify-content-center align-items-center">
-            <div class="col-md-6 col-lg-4">
+        <div class="row vh-100 justify-content-center pt-5">
+            <div class="col">
                 <div class="login-container">
                     <div class="text-center mb-4">
-                        <h3>Welcome to MediVent</h3>
+                        <h3>Login</h3>
                     </div>
                     <form id="loginForm">
                         <div class="form-group">
                             <label for="inputUsername">Username</label>
-                            <input type="username" id="inputUsername" class="form-control" placeholder="Enter username" required autofocus>
+                            <input type="text" id="inputUsername" class="form-control" placeholder="Enter username" required autofocus>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-5">
                             <label for="inputPassword">Password</label>
                             <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                         </div>

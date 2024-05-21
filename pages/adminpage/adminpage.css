@@ -1,0 +1,79 @@
+body {
+  font-size: 2em; /* Increase overall font size */
+}
+
+.table {
+  font-size: 1.5em; /* Increase table font size */
+}
+
+.modal-title,
+.modal-body label {
+  font-size: 1.5em; /* Increase modal font size */
+}
+
+.form-control {
+  font-size: 1.5em; /* Increase form control font size */
+}
+
+.btn {
+  font-size: 1.5em; /* Increase button font size */
+  padding: 15px 20px; /* Increase padding */
+}
+
+.container {
+  padding: 20px;
+}
+
+.form-group input {
+  padding: 15px;
+  font-size: 1.5em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    font-size: 1.2em; /* Adjust font size for small screens */
+  }
+
+  .table {
+    font-size: 1.2em;
+  }
+
+  .modal-title,
+  .modal-body label {
+    font-size: 1.2em;
+  }
+
+  .form-control {
+    font-size: 1.2em;
+  }
+
+  .btn {
+    font-size: 1.2em;
+    padding: 10px 15px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  body {
+    font-size: 1.8em; /* Adjust font size for tablets */
+  }
+
+  .table {
+    font-size: 1.5em;
+  }
+
+  .modal-title,
+  .modal-body label {
+    font-size: 1.5em;
+  }
+
+  .form-control {
+    font-size: 1.5em;
+  }
+
+  .btn {
+    font-size: 1.5em;
+    padding: 15px 20px;
+  }
+}

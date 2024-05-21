@@ -1,43 +1,56 @@
+body {
+  font-size: 3em; /* Increase overall font size */
+}
+
 .search-bar-container {
-    position: relative;
-    margin: 20px 0;
-  }
+  position: relative;
+  margin: 20px 0;
+}
 
-  .search-bar {
-    width: 100%;
-    padding: 10px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
-  }
+.search-bar {
+  width: 100%;
+  padding: 20px !important; /* Increase padding */
+  border-radius: 25px !important; /* Increase border radius */
+  border: 2px solid #ccc !important; /* Increase border size */
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  font-size: 2.5em !important; /* Increase font size */
+}
 
+.card {
+  border: none;
+  border-radius: 15px; /* Increase border radius */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Increase box-shadow */
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-8px); /* Increase hover effect */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* Increase hover shadow */
+}
+
+.card-body {
+  padding: 30px; /* Increase padding */
+  text-align: center;
+}
+
+.card-title {
+  font-size: 3rem; /* Increase font size */
+  margin-bottom: 10px; /* Increase margin */
+}
+
+.card-text {
+  font-size: 1.7rem; /* Increase font size */
+}
+
+.btn-login {
+  border-radius: 25px !important; /* Increase border radius */
+  padding: 20px 40px !important; /* Increase padding */
+  font-size: 1.5em !important; /* Increase font size */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
   .card {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,.2);
-    transition: transform .3s ease-in-out;
+    margin-bottom: 15px;
   }
-
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0,0,0,.3);
-  }
-
-  .card-body {
-    padding: 10px;
-    text-align: center;
-  }
-
-  .card-title {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-  }
-
-  .card-text {
-    font-size: .9rem;
-  }
-
-  .btn-login {
-    float: right;
-    border-radius: 20px;
-  }
+}

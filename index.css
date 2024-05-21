@@ -1,27 +1,33 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-}
-.header-content {
-    text-align: center;
-    margin-bottom: 50px; /* Adjust spacing */
-}
-.vending-machine {
-    width: 10em; /* Adjust size as needed */
-}
-.btn-custom {
-    padding: 10px 20px; /* Adjust padding */
-    border-radius: 20px; /* Rounded edges */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
 }
 
-#title{
-    width:100%;
-    font-size: 4em;
-    font-weight: 100;
-    letter-spacing: 15px;
-    text-align: center;
+.header-content {
+  text-align: center;
+  margin-bottom: 50px; /* Adjust spacing */
+}
+
+.vending-machine {
+  width: 26em; /* Adjust size as needed */
+}
+
+.btn-custom {
+  padding: 20px 30px; /* Adjust padding for larger buttons */
+  border-radius: 20px; /* Rounded edges */
+  font-size: 1.8em; /* Increase font size */
+  min-width: 200px; /* Ensure minimum width */
+  min-height: 60px; /* Ensure minimum height */
+}
+
+#title {
+  width: 100%;
+  font-size: 8em;
+  font-weight: 100;
+  letter-spacing: 15px;
+  text-align: center;
 }
