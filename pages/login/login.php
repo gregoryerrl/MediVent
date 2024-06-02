@@ -19,6 +19,7 @@
                         <h3>Login</h3>
                     </div>
                     <form id="loginForm">
+                        <div id="error-message" class="text-danger mb-3" style="display: none;"></div> <!-- Error message container -->
                         <div class="form-group">
                             <label for="inputUsername">Username</label>
                             <input type="text" id="inputUsername" class="form-control" placeholder="Enter username" required autofocus>
@@ -31,16 +32,17 @@
                             <button type="submit" class="btn btn-primary btn-block">Sign in</button>
                         </div>
                     </form>
+                    
+                    <a href="../../pages/register/register.php" type="button" class="btn btn-primary btn-custom mt-4">Register</a>
                 </div>
             </div>
         </div>
     </div>
+
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <script src="../../helpers/helpers.js"></script>
     <script src="../../plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../plugins/jsQR/dist/jsQr.js"></script>
     <script src="login.js"></script>
-
 </body>
 
 </html>

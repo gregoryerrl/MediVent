@@ -26,9 +26,10 @@ $(document).ready(function () {
         card.click(function () {
           const medicineName = dbQuery.result(i, "brand");
           const medicinePrice = dbQuery.result(i, "cost");
+          const medicineId = dbQuery.result(i, "id");
           window.location.href = `../transaction/transaction.php?name=${encodeURIComponent(
             medicineName
-          )}&price=${medicinePrice}`;
+          )}&price=${medicinePrice}&id=${medicineId}`;
         });
 
         // Append the card to the container

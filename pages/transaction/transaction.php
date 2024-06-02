@@ -26,7 +26,7 @@
                         </div>
                         <p class="card-text mt-3">Total: Php <span id="total-price"></span></p>
                         <div class="d-flex justify-content-around">
-                            <button id="proceed-gcash" class="btn btn-primary btn-lg">Pay with GCash</button>
+                            <button id="proceed-credit" class="btn btn-primary btn-lg">Pay with Credit</button>
                             <button id="proceed-bill" class="btn btn-secondary btn-lg">Pay with Cash</button>
                         </div>
                         <button id="cancel" class="btn btn-warning btn-lg mt-3">Cancel</button>
@@ -37,6 +37,7 @@
     </div>
 
     <script src="../../plugins/jquery/jquery.min.js"></script>
+    <script src="../../helpers/helpers.js"></script>
     <script src="../../plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="transaction.js"></script>
 </body>

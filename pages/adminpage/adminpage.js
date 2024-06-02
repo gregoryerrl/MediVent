@@ -120,4 +120,49 @@ $(document).ready(function () {
         window.location.reload();
       });
   });
+
+  // Top-up credits functionality
+  $("#topupBtn").click(function () {
+    let username = $("#topupUsername").val();
+    let amount = parseFloat($("#topupAmount").val());
+
+    if (username && amount > 0) {
+      // Fetch the current credits for the user
+      dbQuery
+        .execute(
+          'SELECT * FROM `userstable` WHERE username = "' + username + '"'
+        )
+        .then(function () {
+          if (dbQuery.rows() > 0) {
+            let currentCredits = parseFloat(dbQuery.result(0, "credits"));
+            let newCredits = currentCredits + amount;
+
+            // Update the user's credits
+            dbQuery
+              .executeNonQuery(
+                "UPDATE `userstable` SET credits = " +
+                  newCredits +
+                  ' WHERE username = "' +
+                  username +
+                  '"'
+              )
+              .then(function () {
+                alert("Credits successfully topped up!");
+                $("#topupUsername").val("");
+                $("#topupAmount").val("");
+              })
+              .catch(function (error) {
+                console.error("Error updating credits: ", error);
+              });
+          } else {
+            alert("User not found!");
+          }
+        })
+        .catch(function (error) {
+          console.error("Error fetching user: ", error);
+        });
+    } else {
+      alert("Please enter a valid username and amount.");
+    }
+  });
 });

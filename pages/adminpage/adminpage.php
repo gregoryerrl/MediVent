@@ -47,6 +47,16 @@
             <input type="number" id="newDropper" class="form-control mt-2" placeholder="Dropper">
         </div>
         <button id="addBtn" class="btn btn-success mt-2">Add Medicine</button>
+
+        <!-- Top-up Credits -->
+        <h3 class="mt-4">Top-up Credits</h3>
+        <div class="form-group">
+            <input type="text" id="topupUsername" class="form-control mt-2" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <input type="number" id="topupAmount" class="form-control mt-2" placeholder="Amount">
+        </div>
+        <button id="topupBtn" class="btn btn-primary mt-2">Top-up Credits</button>
     </div>
 
     <!-- Edit Medicine Modal -->
@@ -95,3 +105,4 @@
     <script src="adminpage.js"></script>
 </body>
 </html>
+
