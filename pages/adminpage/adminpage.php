@@ -57,6 +57,14 @@
             <input type="number" id="topupAmount" class="form-control mt-2" placeholder="Amount">
         </div>
         <button id="topupBtn" class="btn btn-primary mt-2">Top-up Credits</button>
+
+        <!-- Wheelstep Configuration -->
+        <h3 class="mt-4">Wheelstep Configuration</h3>
+        <div class="form-group">
+            <label for="wheelstep">Wheelstep Value</label>
+            <input type="number" id="wheelstep" class="form-control mt-2" placeholder="Enter wheelstep value">
+        </div>
+        <button id="saveWheelstepBtn" class="btn btn-primary mt-2">Save Wheelstep</button>
     </div>
 
     <!-- Edit Medicine Modal -->

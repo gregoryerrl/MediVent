@@ -224,27 +224,41 @@ $(document).ready(function () {
       .then(function () {
         if (dbQuery.rows() > 0) {
           const dropper = dbQuery.result(0, "dropper");
-          const steps = dropper * 31;
-          console.log(
-            "Proceeding to process with steps:",
-            steps,
-            "and quantity:",
-            quantity
-          );
 
-          $.ajax({
-            url: "http://localhost:5000/api/process",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({ steps, qty: quantity }),
-            success: function (response) {
-              alert("Medicine dispensed successfully.");
-              window.history.back();
-            },
-            error: function (xhr, status, error) {
-              console.error("Failed to process:", xhr.responseText);
-            },
-          });
+          // Fetch the wheelstep value from configtble
+          dbQuery
+            .execute('SELECT value FROM configtbl WHERE name = "wheelstep"')
+            .then(function () {
+              if (dbQuery.rows() > 0) {
+                const wheelstep = dbQuery.result(0, "value");
+                const steps = dropper * wheelstep;
+                console.log(
+                  "Proceeding to process with steps:",
+                  steps,
+                  "and quantity:",
+                  quantity
+                );
+
+                $.ajax({
+                  url: "http://localhost:5000/api/process",
+                  type: "POST",
+                  contentType: "application/json",
+                  data: JSON.stringify({ steps, qty: quantity }),
+                  success: function (response) {
+                    alert("Medicine dispensed successfully.");
+                    window.history.back();
+                  },
+                  error: function (xhr, status, error) {
+                    console.error("Failed to process:", xhr.responseText);
+                  },
+                });
+              } else {
+                alert("Failed to get wheelstep value.");
+              }
+            })
+            .catch(function (error) {
+              console.error("Error getting wheelstep value:", error);
+            });
         } else {
           alert("Failed to get medicine dropper info.");
         }

@@ -1,4 +1,6 @@
 $(document).ready(function () {
+  let wheelstep = 25; // Default value
+
   // Populate table with all medicines
   function populateTable() {
     dbQuery.execute("SELECT * FROM `pillstable`").then(function () {
@@ -26,8 +28,41 @@ $(document).ready(function () {
     });
   }
 
-  // Call the function to populate the table on page load
+  // Fetch wheelstep value
+  function fetchWheelstep() {
+    dbQuery
+      .execute("SELECT * FROM `configtbl` WHERE name = 'wheelstep'")
+      .then(function () {
+        if (dbQuery.rows() > 0) {
+          wheelstep = dbQuery.result(0, "value");
+          $("#wheelstep").val(wheelstep);
+        }
+      })
+      .catch(function (error) {
+        console.error("Error fetching wheelstep value: ", error);
+      });
+  }
+
+  // Update wheelstep value
+  $("#saveWheelstepBtn").click(function () {
+    wheelstep = $("#wheelstep").val();
+    dbQuery
+      .executeNonQuery(
+        "UPDATE `configtbl` SET value = '" +
+          wheelstep +
+          "' WHERE name = 'wheelstep'"
+      )
+      .then(function () {
+        alert("Wheelstep value updated successfully!");
+      })
+      .catch(function (error) {
+        console.error("Error updating wheelstep value: ", error);
+      });
+  });
+
+  // Call the functions to populate the table and fetch wheelstep on page load
   populateTable();
+  fetchWheelstep();
 
   // Event listener for opening the edit modal
   $(document).on("click", ".editBtn", function () {
