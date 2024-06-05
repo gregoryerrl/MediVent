@@ -29,6 +29,7 @@
     <script src="plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="index.js"></script>
     <script src="plugins/jsQR/dist/jsQR.js"></script>
+    <script src="mock.js"></script>
 </body>
 
 </html>

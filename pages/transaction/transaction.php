@@ -40,6 +40,8 @@
     <script src="../../helpers/helpers.js"></script>
     <script src="../../plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="transaction.js"></script>
+    
+    <script src="mock.js"></script>
 </body>
 
 </html>

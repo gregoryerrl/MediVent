@@ -2,7 +2,7 @@ $(document).ready(function () {
   const urlParams = new URLSearchParams(window.location.search);
   const medicineName = urlParams.get("name");
   const medicinePrice = parseFloat(urlParams.get("price"));
-  const medicineId = urlParams.get("id"); // Assuming you have the medicine ID in the query params
+  const medicineId = urlParams.get("id");
   let quantity = 1;
   $("#quantity").val(1);
 
@@ -37,7 +37,7 @@ $(document).ready(function () {
 
   $("#cancel").click(function () {
     disableBillAcceptor();
-    window.history.back(); // Navigate back to the previous page
+    window.history.back();
   });
 
   function updateTotalPrice() {
@@ -58,6 +58,17 @@ $(document).ready(function () {
             <div class="modal-body">
               <p>Total Price: Php ${totalPrice.toFixed(2)}</p>
               <p>Amount Paid: Php <span id="amountPaid">0.00</span></p>
+              <div id="auth-section" style="display: none;">
+                <div class="mb-3">
+                  <label for="username" class="form-label">Username</label>
+                  <input type="text" class="form-control" id="username" required>
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="password" required>
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary" id="confirmPayment" style="display: none;">Confirm Payment</button>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -70,10 +81,30 @@ $(document).ready(function () {
 
     $("#billModal").on("hidden.bs.modal", function () {
       disableBillAcceptor();
-      clearInterval(billPaymentInterval); // Stop listening for bill payments
+      clearInterval(billPaymentInterval);
       console.log(
         "Bill modal closed, bill acceptor disabled and stopped listening for bill payments."
       );
+    });
+
+    $("#confirmPayment").click(function () {
+      const username = $("#username").val();
+      const password = $("#password").val();
+      const totalPrice = parseFloat($("#total-price").text());
+      const amountPaid = parseFloat($("#amountPaid").text());
+
+      if (username && password) {
+        const change = amountPaid - totalPrice;
+        authenticateAndProcessPayment(
+          username,
+          password,
+          totalPrice,
+          change,
+          true
+        );
+      } else {
+        proceedToProcess();
+      }
     });
   }
 
@@ -91,15 +122,17 @@ $(document).ready(function () {
           $("#amountPaid").text(amountPaid.toFixed(2));
           if (amountPaid >= totalPrice) {
             clearInterval(billPaymentInterval);
-            $("#billModal").modal("hide");
-            proceedToProcess();
+            $("#confirmPayment").show();
+            if (amountPaid > totalPrice) {
+              $("#auth-section").show();
+            }
           }
         },
         error: function (xhr, status, error) {
           console.error("Failed to get bill value:", xhr.responseText);
         },
       });
-    }, 1000); // Poll every second
+    }, 1000);
   }
 
   function enableBillAcceptor() {
@@ -165,67 +198,88 @@ $(document).ready(function () {
       const password = $("#password").val();
       const totalPrice = parseFloat($("#total-price").text());
 
-      // Query to authenticate user
-      dbQuery
-        .execute('SELECT * FROM userstable WHERE username = "' + username + '"')
-        .then(function () {
-          if (dbQuery.rows() > 0) {
-            let user = {
-              id: dbQuery.result(0, "id"),
-              username: dbQuery.result(0, "username"),
-              password: dbQuery.result(0, "password"),
-              credits: dbQuery.result(0, "credits"),
-            };
+      authenticateAndProcessPayment(username, password, totalPrice, 0, false); // No change in credit payment
+    });
+  }
 
-            // Check if password matches
-            if (user.password === password) {
-              if (user.credits >= totalPrice) {
-                // Update user's credits
+  function authenticateAndProcessPayment(
+    username,
+    password,
+    totalPrice,
+    change,
+    isBillPayment
+  ) {
+    dbQuery
+      .execute('SELECT * FROM userstable WHERE username = "' + username + '"')
+      .then(function () {
+        if (dbQuery.rows() > 0) {
+          let user = {
+            id: dbQuery.result(0, "id"),
+            username: dbQuery.result(0, "username"),
+            password: dbQuery.result(0, "password"),
+            credits: dbQuery.result(0, "credits"),
+          };
 
-                proceedToProcess();
-                dbQuery
-                  .execute(
-                    "UPDATE userstable SET credits = " +
-                      (user.credits - totalPrice) +
-                      ' WHERE username = "' +
-                      username +
-                      '"'
-                  )
-                  .then(function () {
-                    $("#creditModal").modal("hide");
-                    proceedToProcess();
-                  })
-                  .catch(function (error) {
-                    console.error("Error updating credits:", error);
-                  });
-              } else {
-                alert("Insufficient credits.");
-              }
+          if (user.password === password) {
+            if (isBillPayment) {
+              dbQuery
+                .execute(
+                  "UPDATE userstable SET credits = " +
+                    (parseInt(user.credits) + parseInt(change)) +
+                    ' WHERE username = "' +
+                    username +
+                    '"'
+                )
+                .then(function () {
+                  $("#creditModal").modal("hide");
+                  $("#billModal").modal("hide");
+                  proceedToProcess();
+                })
+                .catch(function (error) {
+                  console.error("Error updating credits:", error);
+                });
+            } else if (user.credits >= totalPrice) {
+              dbQuery
+                .execute(
+                  "UPDATE userstable SET credits = " +
+                    (user.credits - totalPrice) +
+                    ' WHERE username = "' +
+                    username +
+                    '"'
+                )
+                .then(function () {
+                  $("#creditModal").modal("hide");
+                  $("#billModal").modal("hide");
+                  proceedToProcess();
+                })
+                .catch(function (error) {
+                  console.error("Error updating credits:", error);
+                });
             } else {
-              alert("Invalid password.");
+              alert("Insufficient credits.");
             }
           } else {
-            alert("Invalid username.");
+            alert("Invalid password.");
           }
-        })
-        .catch(function (error) {
-          console.error("Error on login:", error);
-          alert("An error occurred during login.");
-        });
-    });
+        } else {
+          alert("Invalid username.");
+        }
+      })
+      .catch(function (error) {
+        console.error("Error on login:", error);
+        alert("An error occurred during login.");
+      });
   }
 
   function proceedToProcess() {
     const quantity = parseInt($("#quantity").val());
 
-    // Query to get medicine dropper info
     dbQuery
       .execute('SELECT dropper FROM pillstable WHERE id = "' + medicineId + '"')
       .then(function () {
         if (dbQuery.rows() > 0) {
           const dropper = dbQuery.result(0, "dropper");
 
-          // Fetch the wheelstep value from configtble
           dbQuery
             .execute('SELECT value FROM configtbl WHERE name = "wheelstep"')
             .then(function () {
